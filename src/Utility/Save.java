@@ -31,10 +31,12 @@ public class Save {
 			else if(!saveFile.canRead()) {
 				load_fail_reason = 1;
 				load_file = directory;
+				Logging.log(Logging.ERROR, "Save file at " + directory + " cannot be read!");
 				return;
 			}
 		}
 		// Executes only if the save file doesn't exist.
 		load_fail_reason = 0;
+		Logging.log(Logging.INFO, "No save files found. Game launching with default data.");
 	}
 }

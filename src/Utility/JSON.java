@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 public class JSON {
 
+	// Reads JSON dictionaries.
 	public static HashMap<String, Object> read(File file) throws FileNotFoundException {
 		String fullJSON = "";
 		Scanner reader = new Scanner(file);

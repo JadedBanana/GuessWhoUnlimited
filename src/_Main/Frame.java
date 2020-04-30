@@ -29,7 +29,7 @@ public class Frame extends JFrame {
 		setResizable(Constants.RESIZABLE);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-		setSize(800 + this.getInsets().right + this.getInsets().left, 600 + this.getInsets().top + this.getInsets().bottom);
+		setSize(frameWidth + this.getInsets().right + this.getInsets().left, frameHeight + this.getInsets().top + this.getInsets().bottom);
 	}
 	
 }

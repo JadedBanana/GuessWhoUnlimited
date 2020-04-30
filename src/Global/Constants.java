@@ -1,11 +1,16 @@
 package Global;
 
+import java.time.format.DateTimeFormatter;
+
 /* =======================================
  * Constants used throughout the program.
  * =======================================
 */
 
 public class Constants {
+	
+	// Logging constants.
+	public static DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
 	
 	// Frame constants.
 	public static final String WINDOW_TITLE = "Guess Who Unlimited";

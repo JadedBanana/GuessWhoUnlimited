@@ -1,5 +1,8 @@
 package _Main;
 
+import Utility.Logging;
+import Utility.Utility;
+
 /* =============================================================================
  * Launcher launches the program. 
  * It asks the save manager to load any data it can find. See src/Utility/Save.
@@ -14,6 +17,7 @@ public class _Launcher {
 	
 	// Main.
 	public static void main(String[] args) {
+		Logging.log(Logging.DEBUG, "Program launched with arguments " + Utility.arrayToString(args, true));
 		Save.loadFile();
 		new Frame(args);
 	}
