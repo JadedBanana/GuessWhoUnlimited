@@ -7,6 +7,7 @@ package Screens;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 public class ScreenManager {
 	
@@ -18,6 +19,9 @@ public class ScreenManager {
 	public static void mouseReleased(MouseEvent e) { currentScreen.mouseReleased(e); }		
 	public static void mouseEntered(MouseEvent e) { currentScreen.mouseEntered(e); }		
 	public static void mouseExited(MouseEvent e) { currentScreen.mouseExited(e); }
+	public static void mouseDragged(MouseEvent e) { currentScreen.mouseDragged(e); }
+	public static void mouseMoved(MouseEvent e) { currentScreen.mouseMoved(e); }
+	public static void mouseWheelMoved(MouseWheelEvent e) { currentScreen.mouseWheelMoved(e); }
 	public static void keyTyped(KeyEvent e) { currentScreen.keyTyped(e); }		
 	public static void keyPressed(KeyEvent e) { currentScreen.keyPressed(e); }		
 	public static void keyReleased(KeyEvent e) { currentScreen.keyReleased(e); }

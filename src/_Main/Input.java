@@ -1,8 +1,5 @@
 package _Main;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 /* ==================================================
  * Input is the input manager.
  * Mouse movements and keyboard strokes all head through here.
@@ -11,6 +8,11 @@ import java.awt.event.KeyListener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import Global.Constants;
 import Screens.ScreenManager;
@@ -19,8 +21,11 @@ public class Input {
 	
 	// Simple setup.
 	public Input(Panel panel) {
-		panel.addMouseListener(new MouseInput());
-		panel.addKeyListener(new KeyInput());
+		PanelInput input = new PanelInput();
+		panel.addMouseListener(input);
+		panel.addMouseMotionListener(input);
+		panel.addMouseWheelListener(input);
+		panel.addKeyListener(input);
 	}
 	
 	// Values of different key inputs.
@@ -39,20 +44,17 @@ public class Input {
 			Constants.BACK_KEY_CODES
 	};
 
-	// Mouse input, just passes along stuff to the screens.
-	public class MouseInput implements MouseListener {
+	// All input. Just passes along stuff to the screens.
+	public class PanelInput implements MouseListener, MouseMotionListener, MouseWheelListener, KeyListener {
 
 		public void mouseClicked(MouseEvent e) { ScreenManager.mouseClicked(e); }
 		public void mousePressed(MouseEvent e) { ScreenManager.mousePressed(e); }
 		public void mouseReleased(MouseEvent e) { ScreenManager.mouseReleased(e); }		
 		public void mouseEntered(MouseEvent e) { ScreenManager.mouseEntered(e); }		
 		public void mouseExited(MouseEvent e) { ScreenManager.mouseExited(e); }
-		
-	}
-	
-	// Keyboard input, just passes along stuff to the screens.
-	public class KeyInput implements KeyListener {
-		
+		public void mouseDragged(MouseEvent e) { ScreenManager.mouseDragged(e); }
+		public void mouseMoved(MouseEvent e) { ScreenManager.mouseMoved(e); }
+		public void mouseWheelMoved(MouseWheelEvent e) { ScreenManager.mouseWheelMoved(e); }
 		public void keyTyped(KeyEvent e) { ScreenManager.keyTyped(e); }		
 		public void keyPressed(KeyEvent e) { ScreenManager.keyPressed(e); }		
 		public void keyReleased(KeyEvent e) { ScreenManager.keyReleased(e); }

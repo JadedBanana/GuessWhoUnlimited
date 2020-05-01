@@ -8,6 +8,8 @@ package Screens;
 import _Main.Input;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+
 import Utility.Logging;
 
 public class TestScreen implements Screen {
@@ -19,6 +21,14 @@ public class TestScreen implements Screen {
 	public void mouseReleased(MouseEvent e) { Logging.debug("Mouse released at " + e.getX() + ", " + e.getY()); }
 	public void mouseEntered(MouseEvent e) { Logging.debug("Mouse entered at " + e.getX() + ", " + e.getY()); }
 	public void mouseExited(MouseEvent e) { Logging.debug("Mouse exited at " + e.getX() + ", " + e.getY()); }
+	public void mouseDragged(MouseEvent e) { Logging.debug("Mouse dragged to " + e.getX() + ", " + e.getY()); }
+	public void mouseMoved(MouseEvent e) { Logging.debug("Mouse moved to " + e.getX() + ", " + e.getY()); }
+	public void mouseWheelMoved(MouseWheelEvent e) { 
+		if(e.getWheelRotation() < 0)
+			Logging.debug("Mouse scrolled up at " + e.getX() + ", " + e.getY());
+		else
+			Logging.debug("Mouse scrolled down at " + e.getX() + ", " + e.getY());
+	}
 	public void keyTyped(KeyEvent e) { Logging.debug("Key code " + e.getKeyCode() + " typed, equivalent to " + getControlEquivalent(e.getKeyCode())); }
 	public void keyPressed(KeyEvent e) { Logging.debug("Key code " + e.getKeyCode() + " pressed, equivalent to " + getControlEquivalent(e.getKeyCode())); }
 	public void keyReleased(KeyEvent e) { Logging.debug("Key code " + e.getKeyCode() + " released, equivalent to " + getControlEquivalent(e.getKeyCode())); }
