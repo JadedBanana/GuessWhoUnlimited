@@ -8,6 +8,7 @@ package _Main;
 import javax.swing.JFrame;
 
 import Global.Constants;
+import Utility.Logging;
 
 @SuppressWarnings("serial")
 public class Frame extends JFrame {
@@ -22,6 +23,7 @@ public class Frame extends JFrame {
 	// Constructor.
 	public Frame(String[] args) {
 		// Adds the panel to the frame.
+		Logging.debug("Setting up frame...");
 		add(new Panel(this));
 		frame = this;
 		

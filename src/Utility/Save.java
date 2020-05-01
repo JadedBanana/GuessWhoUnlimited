@@ -24,19 +24,23 @@ public class Save {
 	
 	// Attempts to load from the save file.
 	public static void loadFile() {
+		Logging.info("Loading save file...");
 		for(String directory : Constants.SAVE_DIRS) {
 			File saveFile = new File(directory);
+			Logging.debug("Attempting to load save file at " + saveFile.getPath());
 			if(!saveFile.exists())
 				continue;
 			else if(!saveFile.canRead()) {
 				load_fail_reason = 1;
 				load_file = directory;
-				Logging.log(Logging.ERROR, "Save file at " + directory + " cannot be read!");
-				return;
+				Logging.error("Save file cannot be read.");
+				continue;
 			}
 		}
 		// Executes only if the save file doesn't exist.
-		load_fail_reason = 0;
-		Logging.log(Logging.INFO, "No save files found. Game launching with default data.");
+		if(load_fail_reason == -1) {
+			load_fail_reason = 0;
+			Logging.info("No save files found. Game launching with default data.");
+		}
 	}
 }

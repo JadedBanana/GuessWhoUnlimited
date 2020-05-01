@@ -17,7 +17,7 @@ public class _Launcher {
 	
 	// Main.
 	public static void main(String[] args) {
-		Logging.log(Logging.DEBUG, "Program launched with arguments " + Utility.arrayToString(args, true));
+		Logging.info("Program launched with arguments " + Utility.arrayToString(args, true));
 		Save.loadFile();
 		new Frame(args);
 	}
