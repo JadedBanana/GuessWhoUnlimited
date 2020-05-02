@@ -5,6 +5,7 @@ package Screens;
  * ===============================================
 */
 
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -23,5 +24,8 @@ public interface Screen {
 	public void keyTyped(KeyEvent e);	
 	public void keyPressed(KeyEvent e);	
 	public void keyReleased(KeyEvent e);
+	
+	// Method that draws for each screen.
+	public void draw(Graphics g);
 	
 }

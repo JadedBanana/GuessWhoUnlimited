@@ -5,6 +5,7 @@ package Screens;
  * ===============================================
 */
 
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -25,4 +26,7 @@ public class ScreenManager {
 	public static void keyTyped(KeyEvent e) { currentScreen.keyTyped(e); }		
 	public static void keyPressed(KeyEvent e) { currentScreen.keyPressed(e); }		
 	public static void keyReleased(KeyEvent e) { currentScreen.keyReleased(e); }
+	
+	// Drawing methods. Passes to current scren.
+	public static void draw(Graphics g) { currentScreen.draw(g); }
 }

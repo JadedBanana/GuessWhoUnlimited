@@ -7,9 +7,8 @@ package _Main;
 */
 
 import java.awt.Graphics;
-
 import javax.swing.JPanel;
-
+import Screens.ScreenManager;
 import Utility.Logging;
 
 @SuppressWarnings("serial")
@@ -35,7 +34,7 @@ public class Panel extends JPanel {
 	{
 		frameCount++;
 		super.paintComponent(g);
-		g.drawString("peeb", 40, 40);
+		ScreenManager.draw(g);
 	}
 	
 }
