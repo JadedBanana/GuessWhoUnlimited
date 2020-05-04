@@ -15,6 +15,9 @@ public class Constants {
 			System.getProperty("user.home") + "/Documents/GuessWhoUnlimited/save.json"
 	};
 	
+	// JSON constants.
+	public static final String NUMBERS = "0123456789.-";
+	
 	// Logging constants.
 	public static DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
 	

@@ -6,7 +6,6 @@ package Screens;
 */
 
 import _Main.Input;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -14,21 +13,31 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-
+import java.util.HashMap;
 import javax.imageio.ImageIO;
+import Utility.JSON;
+import Utility.JSON.JSONFormattingError;
 import Utility.Logging;
+import Utility.Utility;
 
 public class TestScreen implements Screen {
 	
 	// Variables used for testing.
 	String[] CONTROL_NAMES = {"up", "left", "down", "right", "select", "back"};
 	BufferedImage testImage;
+	String testImagePath = "/diddyKongInVietnam.png";
+	HashMap<String, Object> testImageProperties;
+	String testJSONPath = "/testScreen.json";
 	
 	public TestScreen() {
 		try {
-			testImage = ImageIO.read(TestScreen.class.getResource("/diddyKongInVietnam.png"));
+			testImage = ImageIO.read(TestScreen.class.getResource(testImagePath));
+			testImageProperties = JSON.read(new File(TestScreen.class.getResource(testJSONPath).getPath()));
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONFormattingError e) {
 			e.printStackTrace();
 		}
 	}
@@ -60,12 +69,17 @@ public class TestScreen implements Screen {
 	
 	// Draw method.
 	public void draw(Graphics g) {
-		g.setColor(new Color(255, 0, 0));
-		g.fillRect(200, 100, 300, 100);
 		Graphics2D g2 = (Graphics2D) g;
 		
+		Logging.debug(testImageProperties.get("scaleX").getClass().toString());
+		
 		AffineTransform xform = new AffineTransform();
-		xform.setTransform(2, 0, -1, 1, 300, 300);
+		xform.setTransform(Utility.getDoubleFromHash(testImageProperties.get("scaleX")),
+						   Utility.getDoubleFromHash(testImageProperties.get("shearY")),
+						   Utility.getDoubleFromHash(testImageProperties.get("shearX")),
+						   Utility.getDoubleFromHash(testImageProperties.get("scaleY")),
+						   Utility.getDoubleFromHash(testImageProperties.get("imageX")),
+						   Utility.getDoubleFromHash(testImageProperties.get("imageY")));
 		g2.drawImage(testImage, xform, null);
 	}
 
