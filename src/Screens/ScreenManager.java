@@ -9,10 +9,20 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.util.HashMap;
+
+import Global.Constants;
 
 public class ScreenManager {
 	
-	public static Screen currentScreen = new TestScreen();
+	public static Screen currentScreen = new OnLaunchLoadingScreen();
+	private static HashMap<String, Screen> screenList;
+	
+	// Puts all the screens intho the HashMap.
+	public static void initialize() {
+		screenList = new HashMap<String, Screen>();
+		screenList.put(Constants.GAMESCREEN_TITLE, new GameScreen());
+	}
 
 	// Input methods. Passes the input along to the current screen.
 	public static void mouseClicked(MouseEvent e) { currentScreen.mouseClicked(e); }
@@ -27,6 +37,6 @@ public class ScreenManager {
 	public static void keyPressed(KeyEvent e) { currentScreen.keyPressed(e); }		
 	public static void keyReleased(KeyEvent e) { currentScreen.keyReleased(e); }
 	
-	// Drawing methods. Passes to current scren.
+	// Drawing methods. Passes to current screen.
 	public static void draw(Graphics g) { currentScreen.draw(g); }
 }

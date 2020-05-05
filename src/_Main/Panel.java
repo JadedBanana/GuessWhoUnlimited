@@ -1,5 +1,7 @@
 package _Main;
 
+import java.awt.Color;
+
 /* ===============================================
  * Panel is basically what draws the entire game.
  * It exists within the frame, and only there.
@@ -27,6 +29,7 @@ public class Panel extends JPanel {
 		setFocusable(true);
 		requestFocusInWindow();
 		new Input(this);
+		setBackground(Color.black);
 	}
 	
 	// Method that draws every time something calls for new frames to be drawn.

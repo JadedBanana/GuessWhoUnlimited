@@ -19,7 +19,6 @@ public class JSON {
 	// Reads JSON dictionaries.
 	@SuppressWarnings("unchecked")
 	public static HashMap<String, Object> read(File file) throws FileNotFoundException, JSONFormattingError {
-		Logging.debug("Whatever");
 		// Reads in the raw JSON data.
 		String fullJSON = "";
 		Scanner reader = new Scanner(file);
@@ -60,11 +59,12 @@ public class JSON {
 				}
 			}
 		}
-		return new Object[] {currentDict, remainingJSON};
+		return new Object[] {currentDict, Utility.removeFrontmostSpaces(remainingJSON.substring(1))};
 	}
 	
 	// Gets the object following the key of a dict/in a list.
 	private static Object[] getObject(String remainingJSON) throws JSONFormattingError {
+		Logging.debug(remainingJSON);
 		Object[] objReturn = new Object[2];
 		// Determines what the object is and calls the accurate message to deal with it.
 		// String:
@@ -129,12 +129,13 @@ public class JSON {
 		int endIndex = 1;
 		boolean backslashActive = false;
 		while(endIndex < remainingJSON.length()) {
-			if(remainingJSON.charAt(++endIndex) == '\\')
-				backslashActive = !backslashActive;
-			else if(remainingJSON.charAt(endIndex) == '"' && !backslashActive)
-				return endIndex;
-			else
+			if(remainingJSON.charAt(++endIndex) != '\\') {
+				if(remainingJSON.charAt(endIndex) == '"' && !backslashActive)
+					return endIndex;
 				backslashActive = false;
+			}
+			else
+				backslashActive = !backslashActive;
 		}
 		return -1;
 	}

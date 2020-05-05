@@ -28,4 +28,8 @@ public interface Screen {
 	// Method that draws for each screen.
 	public void draw(Graphics g);
 	
+	// Method that notifies the screen that it is being switched away from/to.
+	public void notifySwitchAway();
+	public void notifySwitchTo();
+	
 }

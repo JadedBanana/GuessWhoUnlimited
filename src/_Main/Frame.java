@@ -1,5 +1,7 @@
 package _Main;
 
+import java.awt.Color;
+
 /* ==================================================
  * Frame is essentially the window the game runs in.
  * ==================================================

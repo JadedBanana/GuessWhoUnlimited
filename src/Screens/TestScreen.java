@@ -71,8 +71,6 @@ public class TestScreen implements Screen {
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		
-		Logging.debug(testImageProperties.get("scaleX").getClass().toString());
-		
 		AffineTransform xform = new AffineTransform();
 		xform.setTransform(Utility.getDoubleFromHash(testImageProperties.get("scaleX")),
 						   Utility.getDoubleFromHash(testImageProperties.get("shearY")),
@@ -82,5 +80,9 @@ public class TestScreen implements Screen {
 						   Utility.getDoubleFromHash(testImageProperties.get("imageY")));
 		g2.drawImage(testImage, xform, null);
 	}
+
+	// Unused methods.
+	public void notifySwitchAway() { }
+	public void notifySwitchTo() { }
 
 }

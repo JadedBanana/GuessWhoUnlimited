@@ -1,5 +1,6 @@
 package _Main;
 
+import Characters.CharacterLoader;
 import Utility.Logging;
 import Utility.Utility;
 
@@ -20,5 +21,6 @@ public class _Launcher {
 		Logging.info("Program launched with arguments " + Utility.arrayToString(args, true));
 		Save.loadFile();
 		new Frame(args);
+		CharacterLoader.load();
 	}
 }

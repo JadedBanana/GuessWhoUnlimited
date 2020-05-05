@@ -21,7 +21,7 @@ public class Utility {
 	public static String removeFrontmostSpaces(String input) {
 		if(input == null)
 			return input;
-		while(input.length() > 0 && (input.charAt(0) == ' ') || input.charAt(0) == '\t')
+		while(input.length() > 0 && (input.charAt(0) == ' ' || input.charAt(0) == '\t'))
 			input = input.substring(1);
 		return input;
 	}
