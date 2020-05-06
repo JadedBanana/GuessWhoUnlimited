@@ -64,7 +64,6 @@ public class JSON {
 	
 	// Gets the object following the key of a dict/in a list.
 	private static Object[] getObject(String remainingJSON) throws JSONFormattingError {
-		Logging.debug(remainingJSON);
 		Object[] objReturn = new Object[2];
 		// Determines what the object is and calls the accurate message to deal with it.
 		// String:
@@ -125,17 +124,15 @@ public class JSON {
 	}
 	
 	// Gets the end of the string.
-	private static int getStringEndIndex(String remainingJSON) {
+	private static int getStringEndIndex(String remainingJSON) throws JSONFormattingError {
 		int endIndex = 1;
-		boolean backslashActive = false;
 		while(endIndex < remainingJSON.length()) {
-			if(remainingJSON.charAt(++endIndex) != '\\') {
-				if(remainingJSON.charAt(endIndex) == '"' && !backslashActive)
-					return endIndex;
-				backslashActive = false;
-			}
+			int backslashQuoteIndex = remainingJSON.indexOf("\\\"", endIndex);
+			int quoteIndex = remainingJSON.indexOf('"', endIndex);
+			if(quoteIndex == backslashQuoteIndex + 1)
+				endIndex = quoteIndex + 1;
 			else
-				backslashActive = !backslashActive;
+				return quoteIndex;
 		}
 		return -1;
 	}
