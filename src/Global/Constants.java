@@ -78,6 +78,7 @@ public class Constants {
 			"dislikes",
 			"allies",
 			"affiliation",
+			"family",
 			"relatives",
 			"enemies",
 			"nationality",

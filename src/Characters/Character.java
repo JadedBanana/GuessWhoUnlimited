@@ -8,8 +8,13 @@ public class Character {
 	
 	// Required keys.
 	public String name;
+	public String filePath;
+	
+	// Everything else.
+	public HashMap<String, Object> characteristics;
 	
 	public Character(HashMap<String, Object> characterData, String filePath) {
+		this.filePath = filePath;
 		name = (String) characterData.get(Constants.CHARACTER_NAME_KEY);
 		// Activates if there is no name for the character.
 		if(name == null) {
@@ -19,6 +24,9 @@ public class Character {
 			CharacterLoader.filesWithErrors.put(filePath, Constants.CHARACTER_NO_NAME_ERROR);
 			return;
 		}
+		// Removes the name to make character data.
+		characterData.remove(Constants.CHARACTER_NAME_KEY);
+		characteristics = characterData;
 		Logging.debug("Character " + name + " loaded successfully.");
 	}
 }

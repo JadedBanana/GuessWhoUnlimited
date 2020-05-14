@@ -39,18 +39,19 @@ public class CharacterLoader {
 			try {
 				HashMap<String, Object> data = JSON.read(currentFileFolder);
 				String type = (String) data.get(Constants.CHARACTER_TYPE_KEY);
+				String path = currentFileFolder.getAbsolutePath();
 				// Sees if there is a single 'type' key in there.
 				if(type != null)
 					// Character.
 					if(type.equals(Constants.CHARACTER_CHARACTER_TYPE_KEY))
-						new Character(data, currentFileFolder.getAbsolutePath());
+						new Character(data, path);
 					// Group.
 					else if(type.contentEquals(Constants.CHARACTER_GROUP_TYPE_KEY))
 						Group.createGroupWithData(data);
 					// Other.
 					else {
-						Logging.warning(currentFileFolder.getAbsolutePath() + Constants.CHARACTER_INVALID_KEY_ERROR + Constants.CHARACTER_TYPE_KEY + "\". Character/group" + Constants.CHARACTER_UNLOADABLE_ERROR);
-						filesWithErrors.put(currentFileFolder.getAbsolutePath(), Constants.CHARACTER_INVALID_KEY_ERROR + Constants.CHARACTER_TYPE_KEY + "\".");
+						Logging.warning(path + Constants.CHARACTER_INVALID_KEY_ERROR + Constants.CHARACTER_TYPE_KEY + "\". Character/group" + Constants.CHARACTER_UNLOADABLE_ERROR);
+						filesWithErrors.put(path, Constants.CHARACTER_INVALID_KEY_ERROR + Constants.CHARACTER_TYPE_KEY + "\".");
 					}
 				// If there isn't a single 'type' key in there.
 				else {
@@ -62,15 +63,15 @@ public class CharacterLoader {
 							Object[] characterArray = (Object[]) characterThing;
 							for(int i = 0; i < characterArray.length; i++)
 								if(characterArray[i].getClass().equals(HashMap.class))
-									new Character((HashMap<String, Object>) characterArray[i], currentFileFolder.getAbsolutePath());
+									new Character((HashMap<String, Object>) characterArray[i], path);
 						}
 						// Activates if there's ONE character.
 						else if(characterThing.getClass().equals(HashMap.class))
-							new Character((HashMap<String, Object>) characterThing, currentFileFolder.getAbsolutePath());
+							new Character((HashMap<String, Object>) characterThing, path);
 						// Other.
 						else {
-							Logging.warning(currentFileFolder.getAbsolutePath() + Constants.CHARACTER_INVALID_KEY_ERROR + Constants.CHARACTER_CHARACTER_TYPE_KEY + "\". Character(s)" + Constants.CHARACTER_UNLOADABLE_ERROR);
-							filesWithErrors.put(currentFileFolder.getAbsolutePath(), Constants.CHARACTER_INVALID_KEY_ERROR + Constants.CHARACTER_CHARACTER_TYPE_KEY +"\".");
+							Logging.warning(path + Constants.CHARACTER_INVALID_KEY_ERROR + Constants.CHARACTER_CHARACTER_TYPE_KEY + "\". Character(s)" + Constants.CHARACTER_UNLOADABLE_ERROR);
+							filesWithErrors.put(path, Constants.CHARACTER_INVALID_KEY_ERROR + Constants.CHARACTER_CHARACTER_TYPE_KEY +"\".");
 						}
 					}
 					// Groups.
@@ -81,15 +82,15 @@ public class CharacterLoader {
 							Object[] groupArray = (Object[]) groupThing;
 							for(int i = 0; i < groupArray.length; i++)
 								if(groupArray[i].getClass().equals(HashMap.class))
-									new Character((HashMap<String, Object>) groupArray[i], currentFileFolder.getAbsolutePath());
+									new Character((HashMap<String, Object>) groupArray[i], path);
 						}
 						// Activates if there's ONE group.
 						else if(groupThing.getClass().equals(HashMap.class))
-							new Character((HashMap<String, Object>) groupThing, currentFileFolder.getAbsolutePath());
+							new Character((HashMap<String, Object>) groupThing, path);
 						// Other.
 						else {
-							Logging.warning(currentFileFolder.getAbsolutePath() + "" + Constants.CHARACTER_GROUP_TYPE_KEY +"\". Group(s)" + Constants.CHARACTER_UNLOADABLE_ERROR);
-							filesWithErrors.put(currentFileFolder.getAbsolutePath(), Constants.CHARACTER_INVALID_KEY_ERROR + Constants.CHARACTER_GROUP_TYPE_KEY +"\".");
+							Logging.warning(path + "" + Constants.CHARACTER_GROUP_TYPE_KEY +"\". Group(s)" + Constants.CHARACTER_UNLOADABLE_ERROR);
+							filesWithErrors.put(path, Constants.CHARACTER_INVALID_KEY_ERROR + Constants.CHARACTER_GROUP_TYPE_KEY +"\".");
 						}
 					}
 				}

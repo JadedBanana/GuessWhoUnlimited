@@ -26,9 +26,8 @@ public class JSON {
 			fullJSON+= reader.nextLine();
 		reader.close();
 		
-		// Removes any pobbile spaces at the start.
+		// Removes any possible spaces at the start.
 		fullJSON = Utility.removeFrontmostSpaces(fullJSON);
-		
 		return (HashMap<String, Object>) makeHashFromDict(fullJSON)[0];
 	}
 	
@@ -116,6 +115,9 @@ public class JSON {
 			objReturn[0] = new Bool(false);
 			remainingJSON = Utility.removeFrontmostSpaces(remainingJSON.substring(5));
 	    }
+		// Anything else that isn't supposed to be there.
+	    else
+	    	throw new JSONFormattingError();
 		// Removes the comma, if it is there.
 		if(remainingJSON.charAt(0) == ',')
 			remainingJSON = Utility.removeFrontmostSpaces(remainingJSON.substring(1));
