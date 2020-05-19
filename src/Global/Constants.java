@@ -94,4 +94,5 @@ public class Constants {
 	public static final String CHARACTER_FORMATTING_ERROR =  " has formatting errors.";
 	public static final String CHARACTER_UNLOADABLE_ERROR = " could not be loaded.";
 	public static final String CHARACTER_NO_NAME_ERROR = " has a character that does not have a name.";
+	public static final String CHARACTER_GROUP_NO_NAME_ERROR = " has a group that does not have a name.";
 }

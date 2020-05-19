@@ -1,10 +1,14 @@
 package Characters;
 
+/* ========================================================================
+ * CharacterLoader loads characters and groups (misleading title, I know).
+ * TODO: Add tutorial/example JSON files.
+ * ========================================================================
+*/
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
-
 import Global.Constants;
 import Utility.JSON;
 import Utility.Logging;
@@ -47,7 +51,7 @@ public class CharacterLoader {
 						new Character(data, path);
 					// Group.
 					else if(type.contentEquals(Constants.CHARACTER_GROUP_TYPE_KEY))
-						Group.createGroupWithData(data);
+						Group.createGroupWithData(data, path);
 					// Other.
 					else {
 						Logging.warning(path + Constants.CHARACTER_INVALID_KEY_ERROR + Constants.CHARACTER_TYPE_KEY + "\". Character/group" + Constants.CHARACTER_UNLOADABLE_ERROR);
@@ -80,13 +84,14 @@ public class CharacterLoader {
 						// Activates if there's multiple groups.
 						if(groupThing.getClass().equals(Object[].class)) {
 							Object[] groupArray = (Object[]) groupThing;
-							for(int i = 0; i < groupArray.length; i++)
+							for(int i = 0; i < groupArray.length; i++) {
 								if(groupArray[i].getClass().equals(HashMap.class))
-									new Character((HashMap<String, Object>) groupArray[i], path);
+									Group.createGroupWithData((HashMap<String, Object>) groupArray[i], path);
+							}
 						}
 						// Activates if there's ONE group.
 						else if(groupThing.getClass().equals(HashMap.class))
-							new Character((HashMap<String, Object>) groupThing, path);
+							Group.createGroupWithData((HashMap<String, Object>) groupThing, path);
 						// Other.
 						else {
 							Logging.warning(path + "" + Constants.CHARACTER_GROUP_TYPE_KEY +"\". Group(s)" + Constants.CHARACTER_UNLOADABLE_ERROR);

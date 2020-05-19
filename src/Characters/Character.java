@@ -1,5 +1,11 @@
 package Characters;
 
+/* ========================================================
+ * Characters are the core of the game.
+ * They have names and images, and are sorted into groups.
+ * ========================================================
+*/
+
 import java.util.HashMap;
 import Global.Constants;
 import Utility.Logging;

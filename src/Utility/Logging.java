@@ -23,29 +23,30 @@ public class Logging {
 	public static String logText = "";
 	
 	// Logs stuff! This is what all the other log methods call to get their jobs done.
-	public static void log(byte level, String input) {
+	public static void log(byte level, Object input) {
+		String inputStr = input.toString();
 		if(level < currentLogLevel)
 			return;
 		String messagePrefix = "[" + Constants.DATE_TIME_FORMAT.format(LocalDateTime.now()) + "] " + levelHeaders[level] + ": ";
 		// Makes sure that everything is tabbed over the correct amount if there are multiple lines in the input.
-		if(input.contains("\n")) {
+		if(inputStr.contains("\n")) {
 			String tabsOver = "\n";
 			for(int i = 0; i < messagePrefix.length(); i++)
 				tabsOver+= " ";
-			int lastIndex = input.length();
-			while(input.lastIndexOf('\n', --lastIndex) != -1) {
-				lastIndex = input.lastIndexOf('\n', lastIndex);
-				input = input.substring(0, lastIndex) + tabsOver + input.substring(lastIndex + 1);
+			int lastIndex = inputStr.length();
+			while(inputStr.lastIndexOf('\n', --lastIndex) != -1) {
+				lastIndex = inputStr.lastIndexOf('\n', lastIndex);
+				inputStr = inputStr.substring(0, lastIndex) + tabsOver + inputStr.substring(lastIndex + 1);
 			}
 		}
 		System.out.println(messagePrefix + input);
 	}
 	
 	// Log methods, with the levels built-in.
-	public static void debug(String input) { log(DEBUG, input); }
-	public static void info(String input) { log(INFO, input); }
-	public static void warning(String input) { log(WARNING, input); }
-	public static void error(String input) { log(ERROR, input); }
-	public static void critical(String input) { log(CRITICAL, input); }
+	public static void debug(Object groupArray) { log(DEBUG, groupArray); }
+	public static void info(Object input) { log(INFO, input); }
+	public static void warning(Object input) { log(WARNING, input); }
+	public static void error(Object input) { log(ERROR, input); }
+	public static void critical(Object input) { log(CRITICAL, input); }
 	
 }
