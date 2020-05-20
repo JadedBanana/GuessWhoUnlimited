@@ -15,7 +15,7 @@ import Global.Constants;
 
 public class ScreenManager {
 	
-	public static Screen currentScreen = new OnLaunchLoadingScreen();
+	public static Screen currentScreen = new TestScreen2();
 	private static HashMap<String, Screen> screenList;
 	
 	// Puts all the screens intho the HashMap.

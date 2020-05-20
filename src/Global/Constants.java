@@ -89,10 +89,16 @@ public class Constants {
 	};
 	public static final String CHARACTER_GROUP_PARENT_GROUP_KEY = "parent";
 	public static final String CHARACTER_GROUP_SUBGROUP_KEY = "subgroups";
+	public static final String CHARACTER_GROUP_SORT_KEY = "sort";
+	public static final String CHARACTER_SORT_DEFAULT_KEY = "default";
+	public static final String CHARACTER_SORT_AZ_KEY = "alphabetical";
+	public static final String CHARACTER_SORT_LOAD_KEY = "load order";
 	public static final String CHARACTER_DIR_LOADING_MESSAGE = "Attempting to load characters within directory ";
 	public static final String CHARACTER_INVALID_KEY_ERROR = " has an invalid value for the key \"";
 	public static final String CHARACTER_FORMATTING_ERROR =  " has formatting errors.";
 	public static final String CHARACTER_UNLOADABLE_ERROR = " could not be loaded.";
 	public static final String CHARACTER_NO_NAME_ERROR = " has a character that does not have a name.";
+	public static final String CHARACTER_INVALID_GROUP_ERROR = " has an invalid value for their group(s).";
+	public static final String CHARACTER_NO_DEFAULT_SORT_ERROR = " has an invalid value in their dict for group(s). If it isn't a number, default sort won't work correctly.";
 	public static final String CHARACTER_GROUP_NO_NAME_ERROR = " has a group that does not have a name.";
 }

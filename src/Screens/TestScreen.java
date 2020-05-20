@@ -2,6 +2,7 @@ package Screens;
 
 /* ===============================================
  * TestScreen is for testing! Obviously!
+ * This one was made to test the graphics.
  * ===============================================
 */
 
@@ -20,7 +21,7 @@ import javax.imageio.ImageIO;
 import Utility.JSON;
 import Utility.JSON.JSONFormattingError;
 import Utility.Logging;
-import Utility.Utility;
+import Utility.Num;
 
 public class TestScreen implements Screen {
 	
@@ -72,12 +73,12 @@ public class TestScreen implements Screen {
 		Graphics2D g2 = (Graphics2D) g;
 		
 		AffineTransform xform = new AffineTransform();
-		xform.setTransform(Utility.getDoubleFromHash(testImageProperties.get("scaleX")),
-						   Utility.getDoubleFromHash(testImageProperties.get("shearY")),
-						   Utility.getDoubleFromHash(testImageProperties.get("shearX")),
-						   Utility.getDoubleFromHash(testImageProperties.get("scaleY")),
-						   Utility.getDoubleFromHash(testImageProperties.get("imageX")),
-						   Utility.getDoubleFromHash(testImageProperties.get("imageY")));
+		xform.setTransform(Num.doubleVal(testImageProperties.get("scaleX")),
+						   Num.doubleVal(testImageProperties.get("shearY")),
+						   Num.doubleVal(testImageProperties.get("shearX")),
+						   Num.doubleVal(testImageProperties.get("scaleY")),
+						   Num.doubleVal(testImageProperties.get("imageX")),
+						   Num.doubleVal(testImageProperties.get("imageY")));
 		g2.drawImage(testImage, xform, null);
 	}
 

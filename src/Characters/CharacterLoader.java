@@ -19,6 +19,7 @@ public class CharacterLoader {
 	// All the static loader stuff.
 	public static String[] characterDirs = Constants.DEFAULT_CHARACTER_DIRS;
 	public static HashMap<String, String> filesWithErrors = new HashMap<String, String>();
+	public static boolean doneLoading = false;
 	
 	// Loads in all the characters.
 	public static void load() {
@@ -31,6 +32,7 @@ public class CharacterLoader {
 					findValidJSON(fileEntry);
 			} catch(NullPointerException e) { }
 		}
+		doneLoading = true;
 	}
 	
 	// Looks for valid JSON in the given folder, or acts recursively for sub-folders.
