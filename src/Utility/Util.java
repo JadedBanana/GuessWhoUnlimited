@@ -2,7 +2,7 @@ package Utility;
 
 import java.util.ArrayList;
 
-public class Utility {
+public class Util {
 
 	// Takes an array and makes it into a String containing all the elements in the array.
 	public static String arrayToString(Object[] arr, boolean spaced) {
@@ -20,21 +20,24 @@ public class Utility {
 		return returnString + "]";
 	}
 	
+	
 	// Takes an ArrayList and makes it into a String containing all the elements in the array.
-		public static String arrayToString(ArrayList arr, boolean spaced) {
-			String returnString = "[";
-			for(int i = 0; i < arr.size(); i++) {
-				if(spaced)
-					returnString+= "\n\t";
-				returnString += arr.get(i).toString() + ", ";
-			}
-			if(returnString.contains(",")) {
-				returnString = returnString.substring(0, returnString.length()-2);
-				if(spaced)
-					returnString+= "\n";
-			}
-			return returnString + "]";
+	@SuppressWarnings("rawtypes")
+	public static String arrayToString(ArrayList arr, boolean spaced) {
+		String returnString = "[";
+		for(int i = 0; i < arr.size(); i++) {
+			if(spaced)
+				returnString+= "\n\t";
+			returnString += arr.get(i).toString() + ", ";
 		}
+		if(returnString.contains(",")) {
+			returnString = returnString.substring(0, returnString.length()-2);
+			if(spaced)
+				returnString+= "\n";
+		}
+		return returnString + "]";
+	}
+	
 	
 	// Removes all the spaces in the front of a String.
 	public static String removeFrontmostSpaces(String input) {
@@ -44,6 +47,7 @@ public class Utility {
 			input = input.substring(1);
 		return input;
 	}
+	
 	
 	// Determines alphabetical order between 2 Strings.
 	// Returns -1 if the first is larger, 1 if the second, otherwise returns 0.
@@ -62,4 +66,5 @@ public class Utility {
 		else if(str1char < str2char) return 1;
 		else return 0;
 	}
+	
 }

@@ -8,11 +8,14 @@ package Utility;
 
 public class Num {
 	
+	double realVal;
+	
+	
+	// Constructor.
 	public Num(double realVal) {
 		this.realVal = realVal;
 	}
 
-	double realVal;
 	
 	// Returns casted values of this Num's value.
 	public byte byteVal() { return (byte) realVal; }
@@ -22,6 +25,7 @@ public class Num {
 	public long longVal() { return (long) realVal; }
 	public double doubleVal() { return realVal; }
 	
+	
 	// Returns casted values of a given Num's value.
 	public static byte byteVal(Object num) { return ((Num)num).byteVal(); }
 	public static short shortVal(Object num) { return ((Num)num).shortVal(); }
@@ -29,4 +33,5 @@ public class Num {
 	public static float floatVal(Object num) { return ((Num)num).floatVal(); }
 	public static long longVal(Object num) { return ((Num)num).longVal(); }
 	public static double doubleVal(Object num) { return ((Num)num).doubleVal(); }
+	
 }

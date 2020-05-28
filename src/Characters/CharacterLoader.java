@@ -21,6 +21,7 @@ public class CharacterLoader {
 	public static HashMap<String, String> filesWithErrors = new HashMap<String, String>();
 	public static boolean doneLoading = false;
 	
+	
 	// Loads in all the characters.
 	public static void load() {
 		for (String characterDir : characterDirs) {
@@ -34,6 +35,7 @@ public class CharacterLoader {
 		}
 		doneLoading = true;
 	}
+	
 	
 	// Looks for valid JSON in the given folder, or acts recursively for sub-folders.
 	@SuppressWarnings("unchecked")
@@ -107,4 +109,5 @@ public class CharacterLoader {
 			}
 		}
 	}
+	
 }

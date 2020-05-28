@@ -20,10 +20,12 @@ public class GameScreen implements Screen {
 	public void keyPressed(KeyEvent e) { }	
 	public void keyReleased(KeyEvent e) { }
 	
+	
 	// Method that draws for each screen.
 	public void draw(Graphics g) {
 		
 	}
+	
 	
 	// Method that notifies the screen that it is being switched away from/to.
 	public void notifySwitchAway() { }

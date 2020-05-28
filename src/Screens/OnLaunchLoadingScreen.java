@@ -11,8 +11,10 @@ import _Main.Frame;
 
 public class OnLaunchLoadingScreen implements Screen {
 	
+	// Logs whether the log has been logged to.
 	boolean logged = false;
 
+	
 	// Input methods.
 	public void mouseClicked(MouseEvent e) { }
 	public void mousePressed(MouseEvent e) { }
@@ -25,6 +27,7 @@ public class OnLaunchLoadingScreen implements Screen {
 	public void keyTyped(KeyEvent e) { }	
 	public void keyPressed(KeyEvent e) { }	
 	public void keyReleased(KeyEvent e) { }
+	
 	
 	// Method that draws for each screen.
 	public void draw(Graphics g) {
@@ -39,7 +42,9 @@ public class OnLaunchLoadingScreen implements Screen {
 		g.drawString("Loading", Frame.frameWidth / 2, Frame.frameHeight / 2);
 	}
 	
+	
 	// Method that notifies the screen that it is being switched away from/to.
 	public void notifySwitchAway() { }
 	public void notifySwitchTo() { }
+
 }

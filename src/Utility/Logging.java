@@ -10,6 +10,9 @@ import Global.Constants;
 
 public class Logging {
 
+	// The log text.
+	public static String logText = "";
+	
 	// Logging levels.
 	public static final byte DEBUG = 0;
 	public static final byte INFO = 1;
@@ -19,8 +22,6 @@ public class Logging {
 	private static final String[] levelHeaders = {"DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"};
 	public static byte currentLogLevel = 0;
 	
-	// The log text.
-	public static String logText = "";
 	
 	// Logs stuff! This is what all the other log methods call to get their jobs done.
 	public static void log(byte level, Object input) {
@@ -41,6 +42,7 @@ public class Logging {
 		}
 		System.out.println(messagePrefix + input);
 	}
+	
 	
 	// Log methods, with the levels built-in.
 	public static void debug(Object groupArray) { log(DEBUG, groupArray); }

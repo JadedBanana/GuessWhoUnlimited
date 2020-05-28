@@ -20,6 +20,8 @@ public class Character {
 	// Everything else.
 	public HashMap<String, Object> characteristics;
 	
+	
+	// Constructor.
 	public Character(HashMap<String, Object> characterData, String filePath) {
 		this.filePath = filePath;
 		name = (String) characterData.get(Constants.CHARACTER_NAME_KEY);
@@ -74,6 +76,8 @@ public class Character {
 		Logging.debug("Character " + name + " loaded successfully.");
 	}
 	
+	
+	// toString.
 	public String toString() {
 		return name;
 	}

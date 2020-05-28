@@ -1,11 +1,11 @@
 package Global;
 
-import java.time.format.DateTimeFormatter;
-
 /* =======================================
  * Constants used throughout the program.
  * =======================================
 */
+
+import java.time.format.DateTimeFormatter;
 
 public class Constants {
 	
@@ -15,17 +15,21 @@ public class Constants {
 			System.getProperty("user.home") + "/Documents/GuessWhoUnlimited/save.json"
 	};
 	
+	
 	// JSON constants.
 	public static final String NUMBERS = "0123456789.-";
 	
+	
 	// Logging constants.
 	public static DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
+	
 	
 	// Frame constants.
 	public static final String WINDOW_TITLE = "Guess Who Unlimited";
 	public static final boolean RESIZABLE = false;
 	public static final short DEFAULT_WIDTH = 960;
 	public static final short DEFAULT_HEIGHT = 540;
+	
 	
 	// Input constants.
 	public static final byte[] UP_KEY_CODES = {38, 87, 104};
@@ -35,14 +39,18 @@ public class Constants {
 	public static final byte[] SELECT_KEY_CODES = {8, 27, 67};
 	public static final byte[] BACK_KEY_CODES = {10, 32, 88};
 	
+	
 	// ScreenManager constants.
 	public static final String GAMESCREEN_TITLE = "game";
 	
+	
 	// Character constants.
+	// Character directories.
 	public static final String[] DEFAULT_CHARACTER_DIRS = {
 			System.getProperty("user.home") + "/AppData/Local/GuessWhoUnlimited/Characters/",
 			System.getProperty("user.home") + "/Documents/GuessWhoUnlimited/Characters/"
 	};
+	// Character keys.
 	public static final String CHARACTER_NAME_KEY = "name";
 	public static final String CHARACTER_GROUP_KEY = "group";
 	public static final String CHARACTER_TYPE_KEY = "case";
@@ -87,12 +95,14 @@ public class Constants {
 			"appearances",
 			"portrayed by"
 	};
+	// Group keys.
 	public static final String CHARACTER_GROUP_PARENT_GROUP_KEY = "parent";
 	public static final String CHARACTER_GROUP_SUBGROUP_KEY = "subgroups";
 	public static final String CHARACTER_GROUP_SORT_KEY = "sort";
 	public static final String CHARACTER_SORT_DEFAULT_KEY = "default";
 	public static final String CHARACTER_SORT_AZ_KEY = "alphabetical";
 	public static final String CHARACTER_SORT_LOAD_KEY = "load order";
+	// Error/loading messages.
 	public static final String CHARACTER_DIR_LOADING_MESSAGE = "Attempting to load characters within directory ";
 	public static final String CHARACTER_INVALID_KEY_ERROR = " has an invalid value for the key \"";
 	public static final String CHARACTER_FORMATTING_ERROR =  " has formatting errors.";
@@ -101,4 +111,5 @@ public class Constants {
 	public static final String CHARACTER_INVALID_GROUP_ERROR = " has an invalid value for their group(s).";
 	public static final String CHARACTER_NO_DEFAULT_SORT_ERROR = " has an invalid value in their dict for group(s). If it isn't a number, default sort won't work correctly.";
 	public static final String CHARACTER_GROUP_NO_NAME_ERROR = " has a group that does not have a name.";
+	
 }

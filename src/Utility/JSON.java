@@ -27,14 +27,15 @@ public class JSON {
 		reader.close();
 		
 		// Removes any possible spaces at the start.
-		fullJSON = Utility.removeFrontmostSpaces(fullJSON);
+		fullJSON = Util.removeFrontmostSpaces(fullJSON);
 		return (HashMap<String, Object>) makeHashFromDict(fullJSON)[0];
 	}
+	
 	
 	// Returns a HashMap with the results of the dict along with a string representing the rest of the file.
 	private static Object[] makeHashFromDict(String remainingJSON) throws JSONFormattingError {
 		HashMap<String, Object> currentDict = new HashMap<String, Object>();
-		remainingJSON = Utility.removeFrontmostSpaces(remainingJSON.substring(1));
+		remainingJSON = Util.removeFrontmostSpaces(remainingJSON.substring(1));
 		
 		// Collects all the stuff within the dictionary.
 		while(remainingJSON.charAt(0) != '}') {
@@ -48,7 +49,7 @@ public class JSON {
 					int keyEnd = getStringEndIndex(remainingJSON);
 					String key = remainingJSON.substring(1, keyEnd);
 					// Removes the key AND the colon.
-					remainingJSON = Utility.removeFrontmostSpaces(remainingJSON.substring(keyEnd + 2));
+					remainingJSON = Util.removeFrontmostSpaces(remainingJSON.substring(keyEnd + 2));
 					// Gets the objects in the dict.
 					Object[] dictReturn = getObject(remainingJSON);
 					currentDict.put(key, dictReturn[0]);
@@ -58,8 +59,9 @@ public class JSON {
 				}
 			}
 		}
-		return new Object[] {currentDict, Utility.removeFrontmostSpaces(remainingJSON.substring(1))};
+		return new Object[] {currentDict, Util.removeFrontmostSpaces(remainingJSON.substring(1))};
 	}
+	
 	
 	// Gets the object following the key of a dict/in a list.
 	private static Object[] getObject(String remainingJSON) throws JSONFormattingError {
@@ -69,7 +71,7 @@ public class JSON {
 		if(remainingJSON.charAt(0) == '"') {
 			int objectEnd = getStringEndIndex(remainingJSON);
 			objReturn[0] = remainingJSON.substring(1, objectEnd);
-			remainingJSON = Utility.removeFrontmostSpaces(remainingJSON.substring(objectEnd + 1));
+			remainingJSON = Util.removeFrontmostSpaces(remainingJSON.substring(objectEnd + 1));
 		}
 		// Dict:
 		else if(remainingJSON.charAt(0) == '{') {
@@ -80,7 +82,7 @@ public class JSON {
 		// List:
 		else if(remainingJSON.charAt(0) == '[') {
 			Object[] listContents = {};
-			remainingJSON = Utility.removeFrontmostSpaces(remainingJSON.substring(1));
+			remainingJSON = Util.removeFrontmostSpaces(remainingJSON.substring(1));
 			while(remainingJSON.charAt(0) != ']') {
 				Object[] listContentsNew = new Object[listContents.length + 1];
 				for(int i = 0; i < listContents.length; i++) listContentsNew[i] = listContents[i];
@@ -90,7 +92,7 @@ public class JSON {
 				remainingJSON = (String) listReturn[1];
 			}
 			objReturn[0] = listContents;
-			remainingJSON = Utility.removeFrontmostSpaces(remainingJSON.substring(1));
+			remainingJSON = Util.removeFrontmostSpaces(remainingJSON.substring(1));
 		}
 		// Number:
 		else if(Constants.NUMBERS.indexOf(remainingJSON.charAt(0)) != -1) {
@@ -102,28 +104,29 @@ public class JSON {
 			} catch(NumberFormatException e) {
 				throw new JSONFormattingError();
 			}
-			remainingJSON = Utility.removeFrontmostSpaces(remainingJSON.substring(numIndex));
+			remainingJSON = Util.removeFrontmostSpaces(remainingJSON.substring(numIndex));
 		}
 		// Boolean/Null:
 		else if(remainingJSON.substring(0, 4).toLowerCase().equals("true")) {
 			objReturn[0] = new Bool(true);
-			remainingJSON = Utility.removeFrontmostSpaces(remainingJSON.substring(4));
+			remainingJSON = Util.removeFrontmostSpaces(remainingJSON.substring(4));
 		} else if(remainingJSON.substring(0, 4).toLowerCase().equals("null")) {
 			objReturn[0] = null;
-			remainingJSON = Utility.removeFrontmostSpaces(remainingJSON.substring(4));
+			remainingJSON = Util.removeFrontmostSpaces(remainingJSON.substring(4));
 	    } else if(remainingJSON.substring(0, 5).toLowerCase().equals("false")) {
 			objReturn[0] = new Bool(false);
-			remainingJSON = Utility.removeFrontmostSpaces(remainingJSON.substring(5));
+			remainingJSON = Util.removeFrontmostSpaces(remainingJSON.substring(5));
 	    }
 		// Anything else that isn't supposed to be there.
 	    else
 	    	throw new JSONFormattingError();
 		// Removes the comma, if it is there.
 		if(remainingJSON.charAt(0) == ',')
-			remainingJSON = Utility.removeFrontmostSpaces(remainingJSON.substring(1));
+			remainingJSON = Util.removeFrontmostSpaces(remainingJSON.substring(1));
 		objReturn[1] = remainingJSON;
 		return objReturn;
 	}
+	
 	
 	// Gets the end of the string.
 	private static int getStringEndIndex(String remainingJSON) throws JSONFormattingError {
@@ -139,7 +142,9 @@ public class JSON {
 		return -1;
 	}
 	
+	
 	// Exception class.
 	@SuppressWarnings("serial")
 	public static class JSONFormattingError extends Exception { }
+	
 }

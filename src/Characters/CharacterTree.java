@@ -12,7 +12,7 @@ package Characters;
 */
 
 import java.util.ArrayList;
-import Utility.Utility;
+import Utility.Util;
 
 public class CharacterTree {
 
@@ -23,10 +23,13 @@ public class CharacterTree {
 		
 	// Size. Shows how many characters are in this tree.
 	public int size;
+	
 	// TreeType. holds the type for THIS tree.
 	TreeType type;
+	
 	// Head node.
 	CharacterNode headNode;
+	
 	
 	// Adds characters to the tree.
 	public void add(Character character, double pos) {
@@ -35,6 +38,7 @@ public class CharacterTree {
 		else
 			addRecursive(headNode, character, pos);
 	}
+	
 	
 	// Recursive method that helps add characters to the tree.
 	private void addRecursive(CharacterNode currentNode, Character character, double pos) {
@@ -50,7 +54,7 @@ public class CharacterTree {
 				else
 					currentNode.rightNode = new CharacterNode(character, pos);
 		else if(type == TreeType.ALPHABETICAL)
-			switch(Utility.getAlphabeticalSuperior(currentNode.character.name, character.name)) {
+			switch(Util.getAlphabeticalSuperior(currentNode.character.name, character.name)) {
 				case -1:
 					if(currentNode.leftNode != null)
 						addRecursive(currentNode.leftNode, character, pos);
@@ -66,6 +70,7 @@ public class CharacterTree {
 			}
 	}
 	
+	
 	// In the rare case where a node needs to be replaced due to a child group determining where in the tree this node should appear, this method will replace the existing node.
 	// Replaced nodes will have null values for characters, which will not appear in the actual GUI.
 	public void replaceNode(Character character, double pos) { 
@@ -74,6 +79,7 @@ public class CharacterTree {
 		replaceNodeRecursive(character, headNode); 
 		add(character, pos);
 	}
+	
 	
 	// Recursive method that helps find the node we're looking for.
 	private boolean replaceNodeRecursive(Character character, CharacterNode currentNode) {
@@ -86,12 +92,14 @@ public class CharacterTree {
 		return currentNode.character == character;
 	}
 	
+	
 	// Copies nodes from this CharacterTree into the given group.
 	public void copyNodes(Group copyTo) {
 		if(headNode == null)
 			return;
 		copyNodesRecursive(copyTo, headNode);
 	}
+	
 	
 	// Recursive method that helps copy nodes.
 	public void copyNodesRecursive(Group copyTo, CharacterNode currentNode) {
@@ -102,10 +110,12 @@ public class CharacterTree {
 		copyTo.addFromChild(currentNode.character, currentNode.pos);
 	}
 	
+	
 	// Gets an ordered list representing the tree. 
 	// Forward goes in a left node -> current node -> right node format.
 	// Backwards goes right node -> current node -> left node.
 	public ArrayList<Character> getCharacterList(boolean backwards) { return getCharacterListRecursive(backwards, headNode); }
+	
 	
 	// Recursive method that gets the character list.
 	private ArrayList<Character> getCharacterListRecursive(boolean backwards, CharacterNode currentNode) {
@@ -124,6 +134,7 @@ public class CharacterTree {
 		}
 		return characters;
 	}
+	
 	
 	// CharacterNode. The basic unit of character measurement.
 	private class CharacterNode {

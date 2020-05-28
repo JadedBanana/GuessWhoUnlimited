@@ -17,6 +17,7 @@ public class Group {
 	
 	// The name for the group.
 	public String name;
+	
 	// The current sort.
 	public String currentSort = Constants.CHARACTER_SORT_DEFAULT_KEY;
 	public boolean reversedSort = false;
@@ -31,6 +32,7 @@ public class Group {
 	public boolean hasCharacters = false;
 	public boolean hasSubgroups = false;
 	public boolean hasParents = false;
+	
 	
 	// A basic constructor that is used only when loading groups directly from a JSON file rather than a character sort.
 	// It is used to initialize the sorts for the characters.
@@ -48,12 +50,14 @@ public class Group {
 		sorts.add(Constants.CHARACTER_SORT_LOAD_KEY);
 	}
 	
+	
 	// Another constructor that is used only when loading directly from a character sort.
 	private Group(String groupName) {
 		this();
 		this.name = groupName;
 		Logging.debug("Group " + groupName + " created successfully.");
 	}
+	
 	
 	// The function that adds the given character to the group.
 	@SuppressWarnings("unchecked")
@@ -76,6 +80,7 @@ public class Group {
 		}
 	}
 	
+	
 	// Adds a character specifically from a child group.
 	@SuppressWarnings("unchecked")
 	public void addFromChild(Character character, double pos) {
@@ -92,12 +97,14 @@ public class Group {
 		hasCharacters = true;
 	}
 	
+	
 	// Adds a parent to this group.
 	public void addParent(Group parent) {
 		parentGroups.add(parent);
 		hasParents = true;
 		((CharacterTree) characters.get(Constants.CHARACTER_SORT_DEFAULT_KEY)).copyNodes(parent);
 	}
+	
 	
 	// The function that returns the sorted characters.
 	@SuppressWarnings("unchecked")
@@ -116,11 +123,14 @@ public class Group {
 		return characterList;
 	}
 	
+	
 	// Everything from here on out is all static.
 	// This all is used in creation and modification of groups.
 	public static HashMap<String, Group> groups = new HashMap<String, Group>();
 	public static HashMap<String, Group> groups_noSubgroups = new HashMap<String, Group>();
 	
+	
+	// Adds a character to a specific group.
 	public static void addToGroup(Character character, String groupName, double pos) {
 		if(!groups.containsKey(groupName)) {
 			groups.put(groupName, new Group(groupName));
@@ -129,6 +139,9 @@ public class Group {
 		groups.get(groupName).add(character, pos);
 	}
 	
+	
+	// Creates a group with data. 
+	// When a character loads a group, there is no data, and it will be filled in automatically when the game finds the group data.
 	public static void createGroupWithData(HashMap<String, Object> groupData, String filePath) {
 		String groupName = (String) groupData.get(Constants.CHARACTER_NAME_KEY);
 		// Activates if there isn't a group name in this group.
@@ -161,4 +174,5 @@ public class Group {
 				}
 		}
 	}
+	
 }

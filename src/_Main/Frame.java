@@ -22,6 +22,7 @@ public class Frame extends JFrame {
 	public static int frameWidth = Constants.DEFAULT_WIDTH;
 	public static int frameHeight = Constants.DEFAULT_HEIGHT;
 	
+	
 	// Constructor.
 	public Frame(String[] args) {
 		// Adds the panel to the frame.

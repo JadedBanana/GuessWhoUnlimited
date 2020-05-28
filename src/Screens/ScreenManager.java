@@ -15,8 +15,10 @@ import Global.Constants;
 
 public class ScreenManager {
 	
+	// Variables.
 	public static Screen currentScreen = new TestScreen2();
 	private static HashMap<String, Screen> screenList;
+	
 	
 	// Puts all the screens intho the HashMap.
 	public static void initialize() {
@@ -24,6 +26,7 @@ public class ScreenManager {
 		screenList.put(Constants.GAMESCREEN_TITLE, new GameScreen());
 	}
 
+	
 	// Input methods. Passes the input along to the current screen.
 	public static void mouseClicked(MouseEvent e) { currentScreen.mouseClicked(e); }
 	public static void mousePressed(MouseEvent e) { currentScreen.mousePressed(e); }
@@ -37,6 +40,8 @@ public class ScreenManager {
 	public static void keyPressed(KeyEvent e) { currentScreen.keyPressed(e); }		
 	public static void keyReleased(KeyEvent e) { currentScreen.keyReleased(e); }
 	
+	
 	// Drawing methods. Passes to current screen.
 	public static void draw(Graphics g) { currentScreen.draw(g); }
+
 }

@@ -2,7 +2,7 @@ package _Main;
 
 import Characters.CharacterLoader;
 import Utility.Logging;
-import Utility.Utility;
+import Utility.Util;
 
 /* =============================================================================
  * Launcher launches the program. 
@@ -18,7 +18,7 @@ public class _Launcher {
 	
 	// Main.
 	public static void main(String[] args) {
-		Logging.info("Program launched with arguments " + Utility.arrayToString(args, true));
+		Logging.info("Program launched with arguments " + Util.arrayToString(args, true));
 		Save.loadFile();
 		new Frame(args);
 		CharacterLoader.load();

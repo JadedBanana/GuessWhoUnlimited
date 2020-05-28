@@ -22,6 +22,7 @@ public class Save {
 	public static byte load_fail_reason = -1;
 	public static String load_file;
 	
+	
 	// Attempts to load from the save file.
 	public static void loadFile() {
 		Logging.info("Loading save file...");
@@ -43,4 +44,5 @@ public class Save {
 			Logging.info("No save files found. Game launching with default data.");
 		}
 	}
+	
 }

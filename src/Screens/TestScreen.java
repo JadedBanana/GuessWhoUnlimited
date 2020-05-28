@@ -1,9 +1,9 @@
 package Screens;
 
-/* ===============================================
+/* ==================================================
  * TestScreen is for testing! Obviously!
- * This one was made to test the graphics.
- * ===============================================
+ * This one was made to test the graphics and input.
+ * ==================================================
 */
 
 import _Main.Input;
@@ -32,6 +32,8 @@ public class TestScreen implements Screen {
 	HashMap<String, Object> testImageProperties;
 	String testJSONPath = "/testScreen.json";
 	
+	
+	// Constructor.
 	public TestScreen() {
 		try {
 			testImage = ImageIO.read(TestScreen.class.getResource(testImagePath));
@@ -43,6 +45,7 @@ public class TestScreen implements Screen {
 		}
 	}
 
+	
 	// Input methods.
 	public void mouseClicked(MouseEvent e) { Logging.debug("Mouse clicked at " + e.getX() + ", " + e.getY()); }
 	public void mousePressed(MouseEvent e) { Logging.debug("Mouse pressed at " + e.getX() + ", " + e.getY()); }
@@ -68,6 +71,7 @@ public class TestScreen implements Screen {
 		return "";
 	}
 	
+	
 	// Draw method.
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -82,6 +86,7 @@ public class TestScreen implements Screen {
 		g2.drawImage(testImage, xform, null);
 	}
 
+	
 	// Unused methods.
 	public void notifySwitchAway() { }
 	public void notifySwitchTo() { }

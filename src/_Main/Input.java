@@ -28,6 +28,7 @@ public class Input {
 		panel.addKeyListener(input);
 	}
 	
+	
 	// Values of different key inputs.
 	public static final byte UP = 0;
 	public static final byte LEFT = 1;
@@ -44,6 +45,7 @@ public class Input {
 			Constants.BACK_KEY_CODES
 	};
 
+	
 	// All input. Just passes along stuff to the screens.
 	public class PanelInput implements MouseListener, MouseMotionListener, MouseWheelListener, KeyListener {
 
@@ -60,4 +62,5 @@ public class Input {
 		public void keyReleased(KeyEvent e) { ScreenManager.keyReleased(e); }
 		
 	}
+	
 }
