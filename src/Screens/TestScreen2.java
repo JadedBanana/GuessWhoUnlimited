@@ -1,9 +1,9 @@
 package Screens;
 
-/* ===============================================
+/* =============================================
  * TestScreen is for testing! Obviously!
  * This one was made to test character loading.
- * ===============================================
+ * =============================================
 */
 
 import java.awt.Color;
@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import Characters.Character;
 import Characters.CharacterLoader;
 import Characters.Group;
+import _Main.Frame;
 import _Main.Panel;
 
 public class TestScreen2 implements Screen {
@@ -70,6 +71,7 @@ public class TestScreen2 implements Screen {
 		// Loads FontMetrics.
 		if(fm == null)
 			fm = g.getFontMetrics();
+		// Draws characters/groups.
 		int currentHeight = listHeight;
 		for(String groupName : Group.groups_noSubgroups.keySet()) {
 			Group gr = Group.groups.get(groupName);
@@ -77,9 +79,14 @@ public class TestScreen2 implements Screen {
 			if(!charactersCounted)
 				characterCount+= gr.characterCount;
 		}
+		// Draws total overview on top.
 		charactersCounted = true;
 		g.setColor(Color.red);
 		g.drawString("(" + groupCount + " groups) (" + characterCount + " characters)", 20, listHeight);
+		// Draws memory usage in top right.
+		String memoryString = "Memory Usage: " + (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())/1024/1024 + "M / " + Runtime.getRuntime().totalMemory()/1024/1024 + "M";
+		g.setColor(Color.green);
+		g.drawString(memoryString, Frame.frameWidth - fm.stringWidth(memoryString) - 5, 15);
 	}
 	
 	
