@@ -27,6 +27,8 @@ public class Group {
 	public HashMap<String, Object> characters = new HashMap<String, Object>();
 	public ArrayList<Group> subgroups = new ArrayList<Group>();
 	public ArrayList<Group> parentGroups = new ArrayList<Group>();
+	public int characterCount = 0;
+	public int subgroupCount = 0;
 	
 	// Booleans.
 	public boolean hasCharacters = false;
@@ -62,9 +64,6 @@ public class Group {
 	// The function that adds the given character to the group.
 	@SuppressWarnings("unchecked")
 	public void add(Character character, double pos) {
-		// Adds character to parent as well.
-		for(Group parent : parentGroups)
-			parent.addFromChild(character, pos);
 		// Checks to see if this character already exists within this group.
 		// If so, it updates the position of it in the default list.
 		ArrayList<Character> loadOrderList = ((ArrayList<Character>) characters.get(Constants.CHARACTER_SORT_LOAD_KEY));
@@ -73,6 +72,11 @@ public class Group {
 		// Activates if this character ISN'T already in this group.
 		else {
 			loadOrderList.add(character);
+			characterCount = loadOrderList.size();
+			// Adds character to parent as well.
+			for(Group parent : parentGroups)
+				parent.addFromChild(character, pos);
+			// Adds character to each sort.
 			for(String sort : characters.keySet())
 				if(!sort.equals(Constants.CHARACTER_SORT_LOAD_KEY))
 					((CharacterTree) characters.get(sort)).add(character, pos);
@@ -91,6 +95,11 @@ public class Group {
 			return;
 		// Activates if this character ISN'T already in this group.
 		loadOrderList.add(character);
+		characterCount = loadOrderList.size();
+		// Adds character to parent as well.
+		for(Group parent : parentGroups)
+			parent.addFromChild(character, pos);
+		// Adds character to each sort.
 		for(String sort : characters.keySet())
 			if(!sort.equals(Constants.CHARACTER_SORT_LOAD_KEY))
 				((CharacterTree) characters.get(sort)).add(character, pos);
@@ -160,18 +169,21 @@ public class Group {
 		// Checks for subgroups and acts accordingly.
 		Object subgroups;
 		if((subgroups = groupData.get(Constants.CHARACTER_GROUP_SUBGROUP_KEY)) != null) {
-			if(subgroups.getClass() == Object[].class)
+			if(subgroups.getClass() == Object[].class) {
+				Group currentGroup = groups.get(groupName);
 				for(Object o : (Object[]) subgroups) {
 					String subgroupName = o.toString();
 					if(!groups.containsKey(subgroupName)) {
 						groups.put(subgroupName, new Group(subgroupName));
 					}
-					groups.get(groupName).subgroups.add(groups.get(subgroupName));
-					groups.get(groupName).hasSubgroups = true;
+					currentGroup.subgroups.add(groups.get(subgroupName));
+					currentGroup.hasSubgroups = true;
+					currentGroup.subgroupCount++;
 					if(groups_noSubgroups.containsKey(subgroupName))
 						groups_noSubgroups.remove(subgroupName);
-					groups.get(subgroupName).addParent(groups.get(groupName));
+					groups.get(subgroupName).addParent(currentGroup);
 				}
+			}
 		}
 	}
 	
