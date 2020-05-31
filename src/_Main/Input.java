@@ -15,6 +15,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import Global.Constants;
+import Global.GlobalVars;
 import Screens.ScreenManager;
 
 public class Input {
@@ -46,7 +47,7 @@ public class Input {
 	};
 
 	
-	// All input. Just passes along stuff to the screens.
+	// All input. Just passes along stuff to the screens, except for debug inputs.
 	public class PanelInput implements MouseListener, MouseMotionListener, MouseWheelListener, KeyListener {
 
 		public void mouseClicked(MouseEvent e) { ScreenManager.mouseClicked(e); }
@@ -58,7 +59,15 @@ public class Input {
 		public void mouseMoved(MouseEvent e) { ScreenManager.mouseMoved(e); }
 		public void mouseWheelMoved(MouseWheelEvent e) { ScreenManager.mouseWheelMoved(e); }
 		public void keyTyped(KeyEvent e) { ScreenManager.keyTyped(e); }		
-		public void keyPressed(KeyEvent e) { ScreenManager.keyPressed(e); }		
+		public void keyPressed(KeyEvent e) { 
+			ScreenManager.keyPressed(e); 
+			if(GlobalVars.DEBUG_MODE) {
+				int keyCode = e.getKeyCode();
+				switch(keyCode) {
+					case Constants.DEBUG_KEY_CODE: GlobalVars.DEBUG_GUI_ELEMENTS = true; break;
+				}
+			}
+		}		
 		public void keyReleased(KeyEvent e) { ScreenManager.keyReleased(e); }
 		
 	}

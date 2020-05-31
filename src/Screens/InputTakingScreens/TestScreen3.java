@@ -18,7 +18,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import Global.Constants;
 import Screens.InputTakingScreen;
-import Utility.Logging;
 import _Main.AniThread;
 import _Main.Frame;
 import _Main.Input;
@@ -62,16 +61,14 @@ public class TestScreen3 extends InputTakingScreen {
 			byte multiplier = 1;
 			if(e.isShiftDown())
 				multiplier = 5;
-			byte direction = Input.getButtonCode(e.getKeyCode());
-			Logging.debug(direction);
-			if(direction == Input.DOWN)
-				AniThread.currentFramerate-= multiplier;
-			else if(direction == Input.UP)
-				AniThread.currentFramerate+= multiplier;
-			else if(direction == Input.RIGHT)
-				AniThread.currentFramerate+= multiplier * 4;
-			else if(direction == Input.LEFT)
-				AniThread.currentFramerate-= multiplier * 4;
+			switch(Input.getButtonCode(e.getKeyCode())) {
+				case Input.DOWN: AniThread.currentFramerate-= multiplier; break;
+				case Input.UP: AniThread.currentFramerate+= multiplier; break;
+				case Input.RIGHT: AniThread.currentFramerate+= multiplier * 4; break;
+				case Input.LEFT: AniThread.currentFramerate-= multiplier * 4; break;
+			}
+			if(AniThread.currentFramerate < Constants.MIN_FRAMERATE)
+				AniThread.currentFramerate = Constants.MIN_FRAMERATE;
 			AniThread.timeToWait = (short) (1000 / AniThread.currentFramerate);
 		}
 	

@@ -7,7 +7,6 @@ package Screens.InputTakingScreens;
 */
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -16,28 +15,27 @@ import java.util.ArrayList;
 import Characters.Character;
 import Characters.CharacterLoader;
 import Characters.Group;
+import Global.Constants;
 import Screens.InputTakingScreen;
-import Utility.Logging;
-import _Main.Frame;
 import _Main.Input;
 import _Main.Panel;
 
 public class TestScreen2 extends InputTakingScreen {
-
-	// Method that says whether or not the current screen uses the AniThread.
-	public boolean usesAniThread() {
-		return false;
-	}
 	
 	// Graphic variables.
 	private int listHeight = 15;
-	private Font listFont = new Font("Courier New", 0, 14);
 	private FontMetrics fm;
 	
 	// Character variables.
 	public boolean charactersCounted = false;
 	public int characterCount = 0;
 	public int groupCount = 0;
+	
+	
+	// Method that says whether or not the current screen uses the AniThread.
+	public boolean usesAniThread() {
+		return false;
+	}
 	
 	
 	// Input methods. Scrolls the list up and down.
@@ -51,17 +49,12 @@ public class TestScreen2 extends InputTakingScreen {
 		byte multiplier = 10;
 		if(e.isShiftDown())
 			multiplier = 35;
-		byte direction = Input.getButtonCode(e.getKeyCode());
-		Logging.debug(direction);
-		if(direction == Input.DOWN)
-			listHeight-= multiplier;
-		else if(direction == Input.UP)
-			listHeight+= multiplier;
-		else if(direction == Input.RIGHT)
-			listHeight-= multiplier * 4;
-		else if(direction == Input.LEFT)
-			listHeight+= multiplier * 4;
-		else return;
+		switch(Input.getButtonCode(e.getKeyCode())) {
+			case Input.DOWN: listHeight-= multiplier; break;
+			case Input.UP: listHeight+= multiplier; break;
+			case Input.RIGHT: listHeight-= multiplier * 4; break;
+			case Input.LEFT: listHeight+= multiplier * 4; break;
+		}
 		Panel.panel.repaint();
 	}
 	
@@ -81,7 +74,7 @@ public class TestScreen2 extends InputTakingScreen {
 		}
 		// Draws each group.
 		g.setColor(Color.white);
-		g.setFont(listFont);
+		g.setFont(Constants.DEBUG_FONT);
 		// Loads FontMetrics.
 		if(fm == null)
 			fm = g.getFontMetrics();
@@ -97,10 +90,6 @@ public class TestScreen2 extends InputTakingScreen {
 		charactersCounted = true;
 		g.setColor(Color.red);
 		g.drawString("(" + groupCount + " groups) (" + characterCount + " characters)", 20, listHeight);
-		// Draws memory usage in top right.
-		String memoryString = "Memory Usage: " + (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())/1024/1024 + "M / " + Runtime.getRuntime().totalMemory()/1024/1024 + "M";
-		g.setColor(Color.green);
-		g.drawString(memoryString, Frame.frameWidth - fm.stringWidth(memoryString) - 5, 15);
 	}
 	
 	

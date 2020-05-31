@@ -1,5 +1,8 @@
 package Global;
 
+import java.awt.Font;
+import java.awt.FontMetrics;
+
 /* =======================================
  * Constants used throughout the program.
  * =======================================
@@ -38,6 +41,10 @@ public class Constants {
 	public static final byte[] RIGHT_KEY_CODES = {39, 68, 102};
 	public static final byte[] SELECT_KEY_CODES = {8, 27, 67};
 	public static final byte[] BACK_KEY_CODES = {10, 32, 88};
+	// Toggles debug stuff when debug mode is on.
+	public static final byte DEBUG_KEY_CODE = 114;
+	// Debug font and fontMetrics.
+	public static final Font DEBUG_FONT = new Font("Courier New", 0, 14);
 	
 	
 	// ScreenManager constants.
