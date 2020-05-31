@@ -34,4 +34,8 @@ public interface Screen {
 	public void notifySwitchAway();
 	public void notifySwitchTo();
 	
+	
+	// Method that says whether or not the current screen uses the AniThread.
+	public boolean usesAniThread();
+	
 }

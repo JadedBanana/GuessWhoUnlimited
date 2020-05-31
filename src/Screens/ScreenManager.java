@@ -2,6 +2,7 @@ package Screens;
 
 /* ===============================================
  * ScreenManager manages screens.
+ * Big surprise!
  * ===============================================
 */
 
@@ -10,13 +11,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.HashMap;
-
 import Global.Constants;
+import Screens.InputTakingScreens.GameScreen;
+import Screens.InputTakingScreens.TestScreen3;
 
 public class ScreenManager {
 	
 	// Variables.
-	public static Screen currentScreen = new TestScreen2();
+	public static Screen currentScreen = new TestScreen3();
 	private static HashMap<String, Screen> screenList;
 	
 	

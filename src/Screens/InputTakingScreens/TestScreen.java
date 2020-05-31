@@ -1,4 +1,4 @@
-package Screens;
+package Screens.InputTakingScreens;
 
 /* ==================================================
  * TestScreen is for testing! Obviously!
@@ -18,26 +18,31 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import javax.imageio.ImageIO;
+import Global.Constants;
+import Screens.InputTakingScreen;
 import Utility.JSON;
 import Utility.JSON.JSONFormattingError;
 import Utility.Logging;
 import Utility.Num;
 
-public class TestScreen implements Screen {
+public class TestScreen extends InputTakingScreen {
 	
 	// Variables used for testing.
-	String[] CONTROL_NAMES = {"up", "left", "down", "right", "select", "back"};
 	BufferedImage testImage;
-	String testImagePath = "/diddyKongInVietnam.png";
 	HashMap<String, Object> testImageProperties;
-	String testJSONPath = "/testScreen.json";
+	
+	
+	// Method that says whether or not the current screen uses the AniThread.
+	public boolean usesAniThread() {
+		return false;
+	}
 	
 	
 	// Constructor.
 	public TestScreen() {
 		try {
-			testImage = ImageIO.read(TestScreen.class.getResource(testImagePath));
-			testImageProperties = JSON.read(new File(TestScreen.class.getResource(testJSONPath).getPath()));
+			testImage = ImageIO.read(TestScreen.class.getResource(Constants.TEST_IMAGE_PATH));
+			testImageProperties = JSON.read(new File(TestScreen.class.getResource(Constants.TEST_SCREEN_JSON_PATH).getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (JSONFormattingError e) {
@@ -67,7 +72,7 @@ public class TestScreen implements Screen {
 		for(int i = 0; i < Input.COMPLETE_INPUT_KEY_CODE_LIST.length; i++)
 			for(int j = 0; j < Input.COMPLETE_INPUT_KEY_CODE_LIST[i].length; j++)
 				if(Input.COMPLETE_INPUT_KEY_CODE_LIST[i][j] == keyCode)
-					return CONTROL_NAMES[i];
+					return Constants.TEST_SCREEN_CONTROL_NAMES[i];
 		return "";
 	}
 	
@@ -75,7 +80,6 @@ public class TestScreen implements Screen {
 	// Draw method.
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		
 		AffineTransform xform = new AffineTransform();
 		xform.setTransform(Num.doubleVal(testImageProperties.get("scaleX")),
 						   Num.doubleVal(testImageProperties.get("shearY")),

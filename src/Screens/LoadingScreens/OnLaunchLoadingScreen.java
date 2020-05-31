@@ -1,32 +1,16 @@
-package Screens;
+package Screens.LoadingScreens;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
+import Screens.LoadingScreen;
 import Utility.Logging;
 import _Main.Frame;
 
-public class OnLaunchLoadingScreen implements Screen {
+public class OnLaunchLoadingScreen extends LoadingScreen {
 	
 	// Logs whether the log has been logged to.
 	boolean logged = false;
-
-	
-	// Input methods.
-	public void mouseClicked(MouseEvent e) { }
-	public void mousePressed(MouseEvent e) { }
-	public void mouseReleased(MouseEvent e) { }
-	public void mouseEntered(MouseEvent e) { }
-	public void mouseExited(MouseEvent e) { }
-	public void mouseDragged(MouseEvent e) { }
-	public void mouseMoved(MouseEvent e) { }
-	public void mouseWheelMoved(MouseWheelEvent e) { }
-	public void keyTyped(KeyEvent e) { }	
-	public void keyPressed(KeyEvent e) { }	
-	public void keyReleased(KeyEvent e) { }
 	
 	
 	// Method that draws for each screen.

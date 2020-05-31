@@ -1,4 +1,4 @@
-package Screens;
+package Screens.InputTakingScreens;
 
 /* =============================================
  * TestScreen is for testing! Obviously!
@@ -11,17 +11,24 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 import Characters.Character;
 import Characters.CharacterLoader;
 import Characters.Group;
+import Screens.InputTakingScreen;
+import Utility.Logging;
 import _Main.Frame;
+import _Main.Input;
 import _Main.Panel;
 
-public class TestScreen2 implements Screen {
+public class TestScreen2 extends InputTakingScreen {
 
+	// Method that says whether or not the current screen uses the AniThread.
+	public boolean usesAniThread() {
+		return false;
+	}
+	
 	// Graphic variables.
 	private int listHeight = 15;
 	private Font listFont = new Font("Courier New", 0, 14);
@@ -33,23 +40,30 @@ public class TestScreen2 implements Screen {
 	public int groupCount = 0;
 	
 	
-	// Input methods.
-	public void mouseClicked(MouseEvent e) {}
-	public void mousePressed(MouseEvent e) {}
-	public void mouseReleased(MouseEvent e) {}
-	public void mouseEntered(MouseEvent e) {}
-	public void mouseExited(MouseEvent e) {}
-	public void mouseDragged(MouseEvent e) {}
-	public void mouseMoved(MouseEvent e) {}
+	// Input methods. Scrolls the list up and down.
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		if(e.isShiftDown())
 			listHeight-= e.getWheelRotation() * 35;
 		listHeight-= e.getWheelRotation() * 10;
 		Panel.panel.repaint();
 	}
-	public void keyTyped(KeyEvent e) {}
-	public void keyPressed(KeyEvent e) {}	
-	public void keyReleased(KeyEvent e) {}
+	public void keyPressed(KeyEvent e) { 
+		byte multiplier = 10;
+		if(e.isShiftDown())
+			multiplier = 35;
+		byte direction = Input.getButtonCode(e.getKeyCode());
+		Logging.debug(direction);
+		if(direction == Input.DOWN)
+			listHeight-= multiplier;
+		else if(direction == Input.UP)
+			listHeight+= multiplier;
+		else if(direction == Input.RIGHT)
+			listHeight-= multiplier * 4;
+		else if(direction == Input.LEFT)
+			listHeight+= multiplier * 4;
+		else return;
+		Panel.panel.repaint();
+	}
 	
 	
 	// Method that draws for each screen.

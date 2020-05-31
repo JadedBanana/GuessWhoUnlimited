@@ -63,4 +63,14 @@ public class Input {
 		
 	}
 	
+	
+	// Method that returns the effective button for the provided keyCode.
+	public static byte getButtonCode(int keyCode) {
+		for(byte i = 0; i < Input.COMPLETE_INPUT_KEY_CODE_LIST.length; i++)
+			for(byte j = 0; j < Input.COMPLETE_INPUT_KEY_CODE_LIST[i].length; j++)
+				if(Input.COMPLETE_INPUT_KEY_CODE_LIST[i][j] == keyCode)
+					return i;
+		return -1;
+	}
+	
 }

@@ -22,5 +22,6 @@ public class _Launcher {
 		Save.loadFile();
 		new Frame(args);
 		CharacterLoader.load();
+		AniThread.initialize();
 	}
 }

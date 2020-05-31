@@ -5,7 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
-public class GameScreen implements Screen {
+import _Main.AniThread;
+
+public abstract class Transition implements Screen {
+	
+	// Determines the length of this transition.
+	protected short transitionLength;
 
 	// Input methods.
 	public void mouseClicked(MouseEvent e) { }
@@ -20,15 +25,11 @@ public class GameScreen implements Screen {
 	public void keyPressed(KeyEvent e) { }	
 	public void keyReleased(KeyEvent e) { }
 	
+	// Method that says whether or not the current screen uses the AniThread.
+	public boolean usesAniThread() { return true; }
 	
-	// Method that draws for each screen.
+	// Draw is only here so that we can keep track of the fps.
 	public void draw(Graphics g) {
-		
+		AniThread.yeetIGottaFrame();
 	}
-	
-	
-	// Method that notifies the screen that it is being switched away from/to.
-	public void notifySwitchAway() { }
-	public void notifySwitchTo() { }
-		
 }

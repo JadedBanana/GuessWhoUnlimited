@@ -111,5 +111,16 @@ public class Constants {
 	public static final String CHARACTER_INVALID_GROUP_ERROR = " has an invalid value for their group(s).";
 	public static final String CHARACTER_NO_DEFAULT_SORT_ERROR = " has an invalid value in their dict for group(s). If it isn't a number, default sort won't work correctly.";
 	public static final String CHARACTER_GROUP_NO_NAME_ERROR = " has a group that does not have a name.";
+
 	
+	// AniThread constants.
+	public static final short MAX_FRAMERATE = 250;
+	public static final short DEFAULT_FRAMERATE = 60;
+	public static final short MIN_FRAMERATE = 1;
+	
+	
+	// TestScreen constants.
+	public static final String[] TEST_SCREEN_CONTROL_NAMES = {"up", "left", "down", "right", "select", "back"};
+	public static final String TEST_SCREEN_JSON_PATH = "/testScreen.json";
+	public static final String TEST_IMAGE_PATH = "/diddyKongInVietnam.png";
 }
