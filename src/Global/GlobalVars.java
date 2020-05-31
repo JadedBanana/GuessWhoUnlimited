@@ -1,8 +1,9 @@
 package Global;
 
-/* ==============================================
- * Global variables used throughout the program.
- * ==============================================
+/* =============================================================
+ * Variables used throughout the program -- that change!
+ * Mostly debug stuff.
+ * =============================================================
 */
 
 public class GlobalVars {

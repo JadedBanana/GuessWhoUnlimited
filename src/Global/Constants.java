@@ -1,13 +1,11 @@
 package Global;
 
-import java.awt.Font;
-import java.awt.FontMetrics;
-
 /* =======================================
  * Constants used throughout the program.
  * =======================================
 */
 
+import java.awt.Font;
 import java.time.format.DateTimeFormatter;
 
 public class Constants {
