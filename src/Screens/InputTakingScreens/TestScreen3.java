@@ -18,6 +18,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import Global.Constants;
 import Screens.InputTakingScreen;
+import Utility.Logging;
 import _Main.AniThread;
 import _Main.Frame;
 import _Main.Input;
@@ -30,6 +31,7 @@ public class TestScreen3 extends InputTakingScreen {
 	short imageAngle = 0;
 	int imgWidth, imgHeight;
 	private Font framerateFont = new Font("Courier New", 0, 26);
+	private DiddySpinner spinner = null;
 	
 	
 	// Method that says whether or not the current screen uses the AniThread.
@@ -51,36 +53,34 @@ public class TestScreen3 extends InputTakingScreen {
 
 		
 	// Input methods. Increases/decreases the framerate.
-		public void mouseWheelMoved(MouseWheelEvent e) {
-			if(e.isShiftDown())
-				AniThread.currentFramerate-= e.getWheelRotation() * 4;
-			AniThread.currentFramerate-= e.getWheelRotation();
-			Panel.panel.repaint();
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		if(e.isShiftDown())
+			AniThread.currentFramerate-= e.getWheelRotation() * 4;
+		AniThread.currentFramerate-= e.getWheelRotation();
+		Panel.panel.repaint();
+	}
+	public void keyPressed(KeyEvent e) { 
+		byte multiplier = 1;
+		if(e.isShiftDown())
+			multiplier = 5;
+		switch(Input.getButtonCode(e.getKeyCode())) {
+			case Input.DOWN: AniThread.currentFramerate-= multiplier; break;
+			case Input.UP: AniThread.currentFramerate+= multiplier; break;
+			case Input.RIGHT: AniThread.currentFramerate+= multiplier * 4; break;
+			case Input.LEFT: AniThread.currentFramerate-= multiplier * 4; break;
 		}
-		public void keyPressed(KeyEvent e) { 
-			byte multiplier = 1;
-			if(e.isShiftDown())
-				multiplier = 5;
-			switch(Input.getButtonCode(e.getKeyCode())) {
-				case Input.DOWN: AniThread.currentFramerate-= multiplier; break;
-				case Input.UP: AniThread.currentFramerate+= multiplier; break;
-				case Input.RIGHT: AniThread.currentFramerate+= multiplier * 4; break;
-				case Input.LEFT: AniThread.currentFramerate-= multiplier * 4; break;
-			}
-			if(AniThread.currentFramerate < Constants.MIN_FRAMERATE)
-				AniThread.currentFramerate = Constants.MIN_FRAMERATE;
-			AniThread.timeToWait = (short) (1000 / AniThread.currentFramerate);
-		}
-	
-	
+		if(AniThread.currentFramerate < Constants.MIN_FRAMERATE)
+			AniThread.currentFramerate = Constants.MIN_FRAMERATE;
+		AniThread.timeToWait = (short) (1000 / AniThread.currentFramerate);
+	}
+		
 	// Draw method. Also spins Diddy Kong!
 	public void draw(Graphics g) {
 		super.draw(g);
 		Graphics2D g2 = (Graphics2D) g;
 		AffineTransform xform = new AffineTransform();
-		xform.setToRotation(imageAngle++ * 0.01745329252, Frame.frameWidth / 2, Frame.frameHeight / 2);
+		xform.setToRotation(imageAngle * 0.01745329252, Frame.frameWidth / 2, Frame.frameHeight / 2);
 		xform.translate(Frame.frameWidth / 2 - imgWidth, Frame.frameHeight / 2 - imgHeight);
-		imageAngle%= 360;
 		g2.drawImage(testImage, xform, null);
 		g2.setFont(framerateFont);
 		g2.setColor(Color.cyan);
@@ -88,8 +88,26 @@ public class TestScreen3 extends InputTakingScreen {
 		g2.drawString("Actual Framerate: " + AniThread.drawsLastSecond, 10, Frame.frameHeight - 8);
 	}
 		
-	// Unused methods.
-	public void notifySwitchAway() { }
-	public void notifySwitchTo() { }
+	// Switch to/away from methods.
+	@SuppressWarnings("deprecation")
+	public void notifySwitchAway() { 
+		if(spinner.isAlive()) spinner.stop();
+	}
+	public void notifySwitchTo() { 
+		spinner = new DiddySpinner();
+		spinner.start();
+	}
+	
+	private class DiddySpinner extends Thread {
+		public void run() {
+			while(true) {
+				try {
+					Thread.sleep(5);
+				} catch (InterruptedException e) { }
+				imageAngle++;
+				imageAngle %= 360;
+			}
+		}
+	}
 	
 }

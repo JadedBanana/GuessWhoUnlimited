@@ -28,7 +28,5 @@ public abstract class InputTakingScreen implements Screen {
 	
 	// Draw is only here so that we can keep track of the fps.
 	public void draw(Graphics g) {
-		if(this.usesAniThread())
-			AniThread.yeetIGottaFrame();
 	}
 }

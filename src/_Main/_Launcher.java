@@ -1,6 +1,7 @@
 package _Main;
 
 import Characters.CharacterLoader;
+import Screens.ScreenManager;
 import Utility.Logging;
 import Utility.Util;
 
@@ -21,7 +22,8 @@ public class _Launcher {
 		Logging.info("Program launched with arguments " + Util.arrayToString(args, true));
 		Save.loadFile();
 		new Frame(args);
-		CharacterLoader.load();
+		ScreenManager.initialize();
 		AniThread.initialize();
+		CharacterLoader.load();
 	}
 }

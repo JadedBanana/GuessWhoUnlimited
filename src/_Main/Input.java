@@ -13,12 +13,11 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import Global.Constants;
 import Global.GlobalVars;
 import Screens.ScreenManager;
 
-public class Input {
+public class Input {	
 	
 	// Simple setup.
 	public Input(Panel panel) {
@@ -59,17 +58,20 @@ public class Input {
 		public void mouseMoved(MouseEvent e) { ScreenManager.mouseMoved(e); }
 		public void mouseWheelMoved(MouseWheelEvent e) { ScreenManager.mouseWheelMoved(e); }
 		public void keyTyped(KeyEvent e) { ScreenManager.keyTyped(e); }		
-		public void keyPressed(KeyEvent e) { 
-			ScreenManager.keyPressed(e); 
+		public void keyPressed(KeyEvent e) { ScreenManager.keyPressed(e); }		
+		public void keyReleased(KeyEvent e) { 
+			ScreenManager.keyReleased(e); 
 			if(GlobalVars.DEBUG_MODE) {
 				int keyCode = e.getKeyCode();
 				switch(keyCode) {
-					case Constants.DEBUG_KEY_CODE: GlobalVars.DEBUG_GUI_ELEMENTS = true; break;
+					case Constants.DEBUG_KEY_CODE: if(GlobalVars.DEBUG_GUI_ELEMENTS)
+												       GlobalVars.DEBUG_GUI_ELEMENTS = false;
+												   else
+													   GlobalVars.DEBUG_GUI_ELEMENTS = true;
+												   break;
 				}
 			}
-		}		
-		public void keyReleased(KeyEvent e) { ScreenManager.keyReleased(e); }
-		
+		}
 	}
 	
 	

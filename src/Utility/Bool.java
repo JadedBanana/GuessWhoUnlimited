@@ -23,4 +23,10 @@ public class Bool {
 	
 	// Returns the value of a given Bool.
 	public static boolean getBool(Object bool) { return ((Bool)bool).getBool(); }
+	
+	
+	// toString.
+	public String toString() {
+		return "" + realVal;
+	}
 }

@@ -33,9 +33,7 @@ public class TestScreen2 extends InputTakingScreen {
 	
 	
 	// Method that says whether or not the current screen uses the AniThread.
-	public boolean usesAniThread() {
-		return false;
-	}
+	public boolean usesAniThread() { return false; }
 	
 	
 	// Input methods. Scrolls the list up and down.

@@ -43,7 +43,7 @@ public class AniThread extends Thread {
 					short pauseLength = (short) timeToWait;
 					if(timeToWait % 1 != 0) {
 						float timeRemainder = timeToWait - pauseLength;
-						if(Math.random() > timeRemainder)
+						if(Math.random() >= timeRemainder)
 							pauseLength++;
 					}
 					Thread.sleep(pauseLength);

@@ -34,4 +34,8 @@ public class Num {
 	public static long longVal(Object num) { return ((Num)num).longVal(); }
 	public static double doubleVal(Object num) { return ((Num)num).doubleVal(); }
 	
+	// toString.
+	public String toString() {
+		return "" + realVal;
+	}
 }
