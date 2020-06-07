@@ -18,7 +18,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import Global.Constants;
 import Screens.InputTakingScreen;
-import Utility.Logging;
 import _Main.AniThread;
 import _Main.Frame;
 import _Main.Input;
@@ -76,7 +75,6 @@ public class TestScreen3 extends InputTakingScreen {
 		
 	// Draw method. Also spins Diddy Kong!
 	public void draw(Graphics g) {
-		super.draw(g);
 		Graphics2D g2 = (Graphics2D) g;
 		AffineTransform xform = new AffineTransform();
 		xform.setToRotation(imageAngle * 0.01745329252, Frame.frameWidth / 2, Frame.frameHeight / 2);

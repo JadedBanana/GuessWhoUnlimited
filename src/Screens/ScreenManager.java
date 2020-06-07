@@ -11,29 +11,33 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.HashMap;
-import Global.Constants;
-import Screens.InputTakingScreens.GameScreen;
-import Screens.InputTakingScreens.TestScreen3;
-import Utility.Logging;
+import Screens.*;
+import Screens.InputTakingScreens.*;
+import Screens.LoadingScreens.*;
+import Screens.Transitions.*;
 import _Main.AniThread;
 import _Main.Panel;
 
 public class ScreenManager {
 	
 	// Variables.
-	public static Screen currentScreen;
-	private static HashMap<String, Screen> screenList;
+	private static Screen currentScreen;
+	private static HashMap<String, Transition> transitionList = new HashMap<String, Transition>();
 	public static boolean initComplete = false;
 	
 	
-	// Puts all the screens intho the HashMap.
+	// Initializes the ScreenManager.
 	public static void initialize() {
-		screenList = new HashMap<String, Screen>();
-		screenList.put(Constants.GAMESCREEN_TITLE, new GameScreen());
 		currentScreen = new TestScreen3();
 		currentScreen.notifySwitchTo();
 		initComplete = true;
 		Panel.panel.repaint();
+	}
+	
+	
+	// Switch methods. Takes an order from a screen to switch to a different screen.
+	public static void switchScreen(Screen from, Screen to) {
+		
 	}
 
 	
@@ -60,5 +64,9 @@ public class ScreenManager {
 		if(currentScreen.usesAniThread())
 			AniThread.yeetIGottaFrame();
 	}
+	
+	
+	// Returns whether the current screen uses AniThread.
+	public static boolean currentScreenUsesAniThread() { return currentScreen.usesAniThread(); }
 
 }

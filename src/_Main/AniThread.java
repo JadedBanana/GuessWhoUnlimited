@@ -37,7 +37,7 @@ public class AniThread extends Thread {
 	// The repeating thread.
 	public void run() {
 		while(true) {
-			if(ScreenManager.currentScreen.usesAniThread()) {
+			if(ScreenManager.currentScreenUsesAniThread()) {
 				try {
 					// Adds in remainders of stuff.
 					short pauseLength = (short) timeToWait;

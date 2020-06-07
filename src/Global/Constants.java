@@ -25,6 +25,10 @@ public class Constants {
 	public static DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
 	
 	
+	// ScreenManager constants.
+	public static String TRANSITION_POINTER = " -> ";
+	
+	
 	// Frame constants.
 	public static final String WINDOW_TITLE = "Guess Who Unlimited";
 	public static final boolean RESIZABLE = false;

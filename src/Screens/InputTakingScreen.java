@@ -1,11 +1,8 @@
 package Screens;
 
-import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-
-import _Main.AniThread;
 
 public abstract class InputTakingScreen implements Screen {
 
@@ -25,8 +22,4 @@ public abstract class InputTakingScreen implements Screen {
 	public void keyTyped(KeyEvent e) { }
 	public void keyPressed(KeyEvent e) { }
 	public void keyReleased(KeyEvent e) { }
-	
-	// Draw is only here so that we can keep track of the fps.
-	public void draw(Graphics g) {
-	}
 }

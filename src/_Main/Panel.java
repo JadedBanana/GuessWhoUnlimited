@@ -48,19 +48,22 @@ public class Panel extends JPanel {
 		super.paintComponent(g);
 		ScreenManager.draw(g);
 		// Overlays debug info on top, if any.
-		if(GlobalVars.DEBUG_MODE && GlobalVars.DEBUG_GUI_ELEMENTS) {
-			g.setFont(Constants.DEBUG_FONT);
-			if(fm == null)
-				fm = g.getFontMetrics();
-			String memoryString = "Memory Usage: " + (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())/1024/1024 + "M / " + Runtime.getRuntime().totalMemory()/1024/1024 + "M";
-			g.setColor(Color.green);
-			g.drawString(memoryString, Frame.frameWidth - fm.stringWidth(memoryString) - 5, 15);
-			g.setColor(Color.yellow);
-			g.drawString("Target FPS: " + AniThread.currentFramerate, 5, 15);
-			g.drawString("Actual FPS: " + AniThread.drawsLastSecond, 5, 30);
-			g.setColor(Color.cyan);
-			g.drawString("Frame #: " + frameCount, 5, 45);
-		}
+		if(GlobalVars.DEBUG_MODE && GlobalVars.DEBUG_GUI_ELEMENTS)
+			drawDebugHUD(g);
+	}
+	
+	public void drawDebugHUD(Graphics g) {
+		g.setFont(Constants.DEBUG_FONT);
+		if(fm == null)
+			fm = g.getFontMetrics();
+		String memoryString = "Memory Usage: " + (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())/1024/1024 + "M / " + Runtime.getRuntime().totalMemory()/1024/1024 + "M";
+		g.setColor(Color.green);
+		g.drawString(memoryString, Frame.frameWidth - fm.stringWidth(memoryString) - 5, 15);
+		g.setColor(Color.yellow);
+		g.drawString("Target FPS: " + AniThread.currentFramerate, 5, 15);
+		g.drawString("Actual FPS: " + AniThread.drawsLastSecond, 5, 30);
+		g.setColor(Color.cyan);
+		g.drawString("Frame #: " + frameCount, 5, 45);
 	}
 	
 }
